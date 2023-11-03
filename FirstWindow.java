@@ -16,7 +16,7 @@ public class FirstWindow implements ActionListener{
     JFrame jf;
     JLabel displaylabel;
     JButton sevenButton;
-    JButton eightButton;
+    JButton eightButton,clearButton;
     JButton nineButton,fourButton,fiveButton,sixButton,oneButton,twoButton,threeButton;
     JButton dotButton,zeroButton,equalButton,divButton,mulButton,subButton,plusButton;
    
@@ -133,6 +133,12 @@ public class FirstWindow implements ActionListener{
         plusButton.setFont(new Font("Arial", Font.PLAIN, (40)));
         plusButton.addActionListener(this);
         jf.add(plusButton);
+
+        clearButton=new JButton("Clear");
+        clearButton.setBounds(430, 430, 80,80);
+        clearButton.setFont(new Font("Arial", Font.PLAIN, (10)));
+        clearButton.addActionListener(this);
+        jf.add(clearButton);
         
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -174,6 +180,8 @@ public class FirstWindow implements ActionListener{
             displaylabel.setText(displaylabel.getText()+"-");
         }else if (e.getSource()==plusButton){
             displaylabel.setText(displaylabel.getText()+"+");
+        }else if (e.getSource()==clearButton){
+            displaylabel.setText(" ");
         }
     }
 

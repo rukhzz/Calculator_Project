@@ -13,10 +13,18 @@ import javax.swing.text.AttributeSet.ColorAttribute;
 
 public class FirstWindow implements ActionListener{
 
+    boolean isOpreatorClicked=false;
+    double num1=0,num2=0,result=0;
+	char operator;
+    
+
     JFrame jf;
-    JLabel displaylabel;
+    JLabel displayLabel;
     JButton sevenButton;
-    JButton eightButton,clearButton;
+
+    
+    
+    JButton eightButton,clearButton,numberButtons,delButton,percentageButton,negButton;
     JButton nineButton,fourButton,fiveButton,sixButton,oneButton,twoButton,threeButton;
     JButton dotButton,zeroButton,equalButton,divButton,mulButton,subButton,plusButton;
    
@@ -29,14 +37,14 @@ public class FirstWindow implements ActionListener{
        
 
         /*label */
-        displaylabel=new JLabel(" ");
-        displaylabel.setFont(new Font("Serif", Font.PLAIN, 20));
-        displaylabel.setBounds(30, 50, 540, 40);
-        displaylabel.setBackground(Color.CYAN);
-        displaylabel.setOpaque(true);
-        displaylabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        displaylabel.setForeground(Color.BLACK);
-        jf.add(displaylabel); 
+        displayLabel=new JLabel(" ");
+        displayLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        displayLabel.setBounds(30, 50, 540, 40);
+        displayLabel.setBackground(Color.blue);
+        displayLabel.setOpaque(true);
+        displayLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        displayLabel.setForeground(Color.WHITE);
+        jf.add(displayLabel); 
 
         sevenButton=new JButton("7");
         sevenButton.setBounds(30, 130, 80,80);
@@ -134,11 +142,29 @@ public class FirstWindow implements ActionListener{
         plusButton.addActionListener(this);
         jf.add(plusButton);
 
-        clearButton=new JButton("Clear");
+        clearButton=new JButton("AC");
         clearButton.setBounds(430, 430, 80,80);
-        clearButton.setFont(new Font("Arial", Font.PLAIN, (10)));
+        clearButton.setFont(new Font("Arial", Font.PLAIN, (20)));
         clearButton.addActionListener(this);
         jf.add(clearButton);
+
+        delButton=new JButton("Del");
+        delButton.setBounds(430, 330, 80,80);
+        delButton.setFont(new Font("Arial", Font.PLAIN, (20)));
+        delButton.addActionListener(this);
+        jf.add(delButton);
+
+        percentageButton=new JButton("%");
+        percentageButton.setBounds(430, 230, 80,80);
+        percentageButton.setFont(new Font("Arial", Font.PLAIN, (40)));
+        percentageButton.addActionListener(this);
+        jf.add(percentageButton);
+
+        negButton=new JButton("(-)");
+        negButton.setBounds(430, 130, 80,80);
+        negButton.setFont(new Font("Arial", Font.PLAIN, (20)));
+        negButton.addActionListener(this);
+        jf.add(negButton);
         
         jf.setVisible(true);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -148,45 +174,140 @@ public class FirstWindow implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
+       
         if (e.getSource()==sevenButton){
-            displaylabel.setText(displaylabel.getText()+"7");
+
+            
+            displayLabel.setText(displayLabel.getText()+"7");
+
         }else if (e.getSource()==eightButton){
-            displaylabel.setText(displaylabel.getText()+"8");
+
+            displayLabel.setText(displayLabel.getText()+"8");
+            
         }else if (e.getSource()==nineButton){
-            displaylabel.setText(displaylabel.getText()+"9");
+
+            
+            displayLabel.setText(displayLabel.getText()+"9");
+
         }else if (e.getSource()==fourButton){
-            displaylabel.setText(displaylabel.getText()+"4");
+
+          
+            displayLabel.setText(displayLabel.getText()+"4");
+
         }else if (e.getSource()==fiveButton){
-            displaylabel.setText(displaylabel.getText()+"5");
+
+            
+            displayLabel.setText(displayLabel.getText()+"5");
+
         }else if (e.getSource()==sixButton){
-            displaylabel.setText(displaylabel.getText()+"6");
+
+            
+            displayLabel.setText(displayLabel.getText()+"6");
+
         }else if (e.getSource()==oneButton){
-            displaylabel.setText(displaylabel.getText()+"1");
+
+            
+            displayLabel.setText(displayLabel.getText()+"1");
+
         }else if (e.getSource()==twoButton){
-            displaylabel.setText(displaylabel.getText()+"2");
+
+           
+            displayLabel.setText(displayLabel.getText()+"2");
+
         }else if (e.getSource()==threeButton){
-            displaylabel.setText(displaylabel.getText()+"3");
+
+            
+            displayLabel.setText(displayLabel.getText()+"3");
+
         }else if(e.getSource()==dotButton){
-            displaylabel.setText(displaylabel.getText()+".");
+            displayLabel.setText(displayLabel.getText()+".");
+
         }else if (e.getSource()==zeroButton){
-            displaylabel.setText(displaylabel.getText()+"0");
+
+         
+            displayLabel.setText(displayLabel.getText()+"0");
+
+        }else if (e.getSource()==percentageButton){
+
+         
+            
+            num1 = Double.parseDouble(displayLabel.getText());
+			operator ='%';
+           
+			displayLabel.setText("");
+         
+
         }else if (e.getSource()==equalButton){
-            displaylabel.setText(displaylabel.getText()+"=");
+            
+            num2=Double.parseDouble(displayLabel.getText());
+			
+			switch(operator) {
+			case'+':
+				result=num1+num2;
+				break;
+			case'-':
+				result=num1-num2;
+				break;
+			case'*':
+				result=num1*num2;
+				break;
+			case'/':
+                if(num1!=0){
+                    result=num1/num2;
+                }
+                else{
+                System.out.println("Error:Cannot divided by zero");
+                }
+				break;
+            case'%':
+                
+                result=num1%num2;
+                break;
+			}
+			displayLabel.setText(String.valueOf(result));
+			num1=result;
+
         }else if (e.getSource()==divButton){
-            displaylabel.setText(displaylabel.getText()+"/");
+            num1 =Double.parseDouble(displayLabel.getText());
+			operator ='/';
+          
+			displayLabel.setText("");
+           
+            
+
         }else if (e.getSource()==mulButton){
-            displaylabel.setText(displaylabel.getText()+"x");
+            num1 = Double.parseDouble(displayLabel.getText());
+			operator ='*';
+			displayLabel.setText("");
+         
+            
         }else if (e.getSource()==subButton){
-            displaylabel.setText(displaylabel.getText()+"-");
-        }else if (e.getSource()==plusButton){
-            displaylabel.setText(displaylabel.getText()+"+");
+            num1 = Double.parseDouble(displayLabel.getText());
+			operator ='-';
+			displayLabel.setText("");
+            
+           
+         }else if (e.getSource()==plusButton){
+            num1 = Double.parseDouble(displayLabel.getText());
+			operator ='+';
+			displayLabel.setText("");
+
+
         }else if (e.getSource()==clearButton){
-            displaylabel.setText(" ");
+            displayLabel.setText(" ");
         }
+        else if(e.getSource()==delButton) {
+			String string = displayLabel.getText();
+			displayLabel.setText("");
+			for(int i=0;i<string.length()-1;i++) {
+				displayLabel.setText(displayLabel.getText()+string.charAt(i));
+            }
+        }
+        else if(e.getSource()==negButton) {
+                double temp = Double.parseDouble(displayLabel.getText());
+                temp*=-1;
+                displayLabel.setText(String.valueOf(temp));
+        }
+            
     }
-
-
-
-    
-    
 }
